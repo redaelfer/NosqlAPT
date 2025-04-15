@@ -24,7 +24,7 @@ def connect_databases():
             raise ConnectionError("Impossible de se connecter à Elasticsearch")
         
         # Connexion à MongoDB
-        mongo_client = MongoClient('mongodb://mongodb:27017/', serverSelectionTimeoutMS=5000)
+        mongo_client = MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
         mongo_db = mongo_client['apt_detection']
         
         logger.info("Connexions aux bases établies avec succès")
@@ -98,7 +98,7 @@ class APTDetector:
 def afficher_attaques_mongodb():
     """Affiche les attaques stockées dans MongoDB"""
     try:
-        client = MongoClient('mongodb://mongodb:27017/', serverSelectionTimeoutMS=5000)
+        client = MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
         db = client['apt_detection']
         collection = db['confirmed_attacks']
         
