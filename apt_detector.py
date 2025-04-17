@@ -35,7 +35,7 @@ def connect_databases():
         exit(1)
 
 # 2. Génération de logs synthétiques (pour tester)
-def generate_sample_logs(filename="logs.txt", num_entries=100):
+def generate_sample_logs(filename="logs.txt", num_entries=1375):
     """Génère un fichier de logs de test avec des patterns normaux et suspects"""
     normal_events = [
         "user_login", 
@@ -203,4 +203,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
