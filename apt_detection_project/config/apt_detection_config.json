@@ -1,0 +1,58 @@
+{
+    "mongodb": {
+        "host": "localhost",
+        "port": 27017,
+        "db_name": "XGBoostDB",
+        "collection": "xgboost"
+    },
+    "model_paths": {
+        "base_dir": "models",
+        "autoencoder": "models/autoencoder_model.h5",
+        "encoder": "models/encoder_model.h5",
+        "xgboost": "models/xgboost_model.json",
+        "preprocessor": "models/preprocessor.pkl"
+    },
+    "autoencoder": {
+        "architecture": [128, 64, 32, 16],
+        "activation": "relu",
+        "bottleneck_activation": "relu",
+        "output_activation": "sigmoid",
+        "dropout_rate": 0.2,
+        "use_batch_norm": true,
+        "learning_rate": 0.001,
+        "batch_size": 64,
+        "epochs": 50,
+        "patience": 5,
+        "validation_split": 0.2
+    },
+    "xgboost": {
+        "params": {
+            "objective": "binary:logistic",
+            "eval_metric": "auc",
+            "eta": 0.1,
+            "max_depth": 5,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "alpha": 0.1,
+            "lambda": 1.0,
+            "min_child_weight": 1,
+            "silent": 1,
+            "scale_pos_weight": 1,
+            "tree_method": "hist"
+        },
+        "num_boost_round": 100,
+        "early_stopping_rounds": 10
+    },
+    "training": {
+        "test_size": 0.2,
+        "random_state": 42,
+        "use_reconstruction_error": true,
+        "use_encoded_features": true,
+        "anomaly_threshold_percentile": 95,
+        "use_smote": true
+    },
+    "inference": {
+        "classification_threshold": 0.5,
+        "batch_size": 1024
+    }
+}
