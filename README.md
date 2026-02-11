@@ -1,67 +1,67 @@
-# NosqlAPT - Détection d'APT via Analyse de Logs NoSQL 🛡️
+# NosqlAPT - APT Detection via NoSQL Log Analysis 🛡️
 
-**NosqlAPT** est un système de détection de menaces persistantes avancées (APT) conçu pour surveiller les environnements NoSQL. Le projet utilise une architecture hybride combinant l'apprentissage automatique (XGBoost) et l'apprentissage profond (Autoencoders) pour identifier des comportements malveillants à travers les journaux système.
+**NosqlAPT** is an Advanced Persistent Threat (APT) detection system designed to monitor NoSQL environments. The project uses a hybrid architecture combining machine learning (XGBoost) and deep learning (Autoencoders) to identify malicious behavior through system logs.
 
-## 🌟 Fonctionnalités Clés
+## 🌟 Key Features
 
-* **Analyse de Logs Multi-niveaux** : Traitement et normalisation des logs système pour l'extraction de caractéristiques pertinentes.
-* **Détection Hybride IA** :
-* **Autoencoder** : Utilisé pour la détection d'anomalies non supervisée.
-* **XGBoost** : Utilisé pour la classification supervisée des étapes d'une attaque APT.
+* **Multi-level Log Analysis**: Processing and normalization of system logs for relevant feature extraction.
+* **Hybrid AI Detection**:
+* **Autoencoder**: Used for unsupervised anomaly detection.
+* **XGBoost**: Used for supervised classification of APT attack stages.
 
 
-* **Pipeline de Prétraitement** : Nettoyage et encodage automatique des données via un pipeline Scikit-learn sérialisé.
-* **Architecture Conteneurisée** : Déploiement simplifié de la stack ELK (Logstash) et des services de détection via Docker Compose.
+* **Preprocessing Pipeline**: Automatic data cleaning and encoding via a serialized Scikit-learn pipeline.
+* **Containerized Architecture**: Simplified deployment of the ELK stack (Logstash) and detection services via Docker Compose.
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies Used
 
-* **Langage** : Python 3.9.
-* **Intelligence Artificielle** : TensorFlow/Keras (Autoencoders), XGBoost, Scikit-learn.
-* **Infrastructure** : Docker, Docker Compose, Logstash.
-* **Data Science** : Pandas, NumPy, Joblib.
+* **Language**: Python 3.9.
+* **Artificial Intelligence**: TensorFlow/Keras (Autoencoders), XGBoost, Scikit-learn.
+* **Infrastructure**: Docker, Docker Compose, Logstash.
+* **Data Science**: Pandas, NumPy, Joblib.
 
-## Installation et Lancement
+## Installation and Launch
 
-### 1. Prérequis
+### 1. Prerequisites
 
-* Docker et Docker Compose installés.
-* Python 3.9 (pour l'exécution locale des scripts).
+* Docker and Docker Compose installed.
+* Python 3.9 (for local script execution).
 
-### 2. Déploiement via Docker
+### 2. Deployment via Docker
 
-Le projet utilise Docker Compose pour orchestrer les services de collecte et de traitement :
+The project uses Docker Compose to orchestrate collection and processing services:
 
 ```bash
-# Lancement de la stack (Logstash et services associés)
+# Launch the stack (Logstash and associated services)
 docker-compose up --build
 
 ```
 
-### 3. Utilisation des Scripts de Détection
+### 3. Using Detection Scripts
 
-Vous pouvez tester le détecteur avec les scripts fournis dans le dossier `scripts/` ou à la racine :
+You can test the detector using the scripts provided in the `scripts/` folder or at the root:
 
 ```bash
-# Lancer la démo de détection
+# Run the detection demo
 python scripts/apt_detection_demo.py
 
-# Intégrer et traiter les logs
+# Integrate and process logs
 python process_logs.py
 
 ```
 
-## 📂 Structure du Projet
+## 📂 Project Structure
 
-* `apt_detection_project/models/` : Contient les modèles entraînés (`.h5`, `.json`) et le préprocesseur (`.pkl`).
-* `apt_detection_project/src/` : Coeur de la logique de détection et de préparation des données.
-* `logstash/config/` : Configuration de l'ingestion des logs via Logstash.
-* `apt_detector.py` : Script principal pour l'interface de détection.
+* `apt_detection_project/models/`: Contains trained models (`.h5`, `.json`) and the preprocessor (`.pkl`).
+* `apt_detection_project/src/`: Core logic for detection and data preparation.
+* `logstash/config/`: Configuration for log ingestion via Logstash.
+* `apt_detector.py`: Main script for the detection interface.
 
-## 📊 Pipeline de Détection
+## Detection Pipeline
 
-1. **Ingestion** : Les logs sont collectés et envoyés vers le pipeline de traitement.
-2. **Prétraitement** : Les données sont nettoyées et transformées selon les caractéristiques attendues (`expected_features.json`).
-3. **Analyse** : Le modèle hybride évalue si le comportement correspond à une étape d'attaque APT.
-4. **Alerte** : Les résultats sont consignés dans les fichiers de logs de détection.
+1. **Ingestion**: Logs are collected and sent to the processing pipeline.
+2. **Preprocessing**: Data is cleaned and transformed according to the expected features (`expected_features.json`).
+3. **Analysis**: The hybrid model evaluates whether the behavior corresponds to an APT attack stage.
+4. **Alerting**: Results are recorded in the detection log files.
 
 ---
